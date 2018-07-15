@@ -21,6 +21,9 @@ to build the app for production run:
 ### App screenshot
 
 ![pixabay-image-lookup screenshot](https://github.com/shutsugan/pixabay-image-lookup/blob/master/page.png)
+
+dialog screenshot
+
 ![pixabay-image-lookup dialog screenshot](https://github.com/shutsugan/pixabay-image-lookup/blob/master/dialog.png)
 
 ### Front-end
