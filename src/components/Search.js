@@ -16,29 +16,43 @@ class Search extends Component {
 	}
 
 	onTextChange = event => {
+		const value = event.target.value;
 		this.setState({
-			[event.target.name]: event.target.value
+			[event.target.name]: value
 		}, _ => {
-			const url = `${this.state.api_url}/?key=${this.state.api_key}&q=${this.state.searchText}&image_type=photo&per_page=${this.state.amount}&safesearch=true`;
-			fetch(url)
-				.then(res => res.json())
-				.then(res => {
-					this.setState({
-						images: res.hits
-					});
-				})
-				.catch(err => console.error(err));
+			if (value === '')  {
+				this.setState({images: []});
+				return;
+			} else {
+				this._loadPhotos();
+			}
 		});
 	}
 
 	onAmountChange = (event, index, value) => {
 		this.setState({
 			amount: value
+		}, _=> {
+			this._loadPhotos();
 		});
+	}
+
+	_loadPhotos() {
+		const {api_url, api_key, searchText, amount} = this.state;
+		const url = `${api_url}/?key=${api_key}&q=${searchText}&image_type=photo&per_page=${amount}&safesearch=true`;
+		fetch(url)
+			.then(res => res.json())
+			.then(res => {
+				this.setState({
+					images: res.hits
+				});
+			})
+			.catch(err => console.error(err));
 	}
 
 	render() {
 		console.log(this.state.images);
+		console.log(this.state.amount);
 		return(
 			<div className="Search">
 				<TextField 
