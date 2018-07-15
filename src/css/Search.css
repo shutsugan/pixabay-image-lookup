@@ -1,1 +1,10 @@
-.Search {}
+.Search {
+	padding: 16px;
+}
+
+.Search__fields {
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
